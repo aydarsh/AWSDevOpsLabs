@@ -13,7 +13,7 @@ This is an example of a CI stack build on Amazon Web Services.
 
 There are Cloud, Data Center and Server versions to use these products. I bought Server licenses 10$ each.
 
-Here is the architecture diagram:
+Here is the architecture diagram:  
 ![Continuous Integration](aws.png)
 
  
