@@ -20,9 +20,11 @@ Here is the architecture diagram:
 
 JIRA Software, Bitbucket and Bamboo servers are not accessible via Internet, since they are located in a private subnet. To reach the infrastructure developers connect via OpenVPN. Database instance is also located in a private subnet. For the servers in the private subnet to reach Internet a NAT instance is deployed in a public subnet.
 
-OpenVPN instance is deployed in a public subnet. I used Bring Your Own License version of the OpenVPN server. It has a limit of two concurrently connected users. An Elastic IP is attached to the OpenVPN server, so its public IP address remains the same across reboots. A separate security group "OpenVPN Access Server SG" is created and attached to this server. This security group allows inbound connections via 1194/udp, 22/tcp, 943/tcp and 443/tcp.
+Firstly, OpenVPN instance is deployed in a public subnet. I used Bring Your Own License version of the OpenVPN server. It has a limit of two concurrently connected users. An Elastic IP is attached to the OpenVPN server, so its public IP address remains the same across reboots. A separate security group "OpenVPN Access Server SG" is created and attached to this server. This security group allows inbound connections via 1194/udp, 22/tcp, 943/tcp and 443/tcp.
 
-Next an RDS PostgreSQL instance is deployed in a private subnet. Here at least two private subnets are required for a subnet group. So one more private subnet is created. This database instance has a separate security group "RDS PostgreSQL SG". It allows inbound connections vi 5432/tcp from the default security group.
+Next, an RDS PostgreSQL instance is deployed in a private subnet. Here at least two private subnets are required for a subnet group. So one more private subnet is created. This database instance has a separate security group "RDS PostgreSQL SG". It allows inbound connections via 5432/tcp from the default security group.
+
+Then, one by one, three EC2 instances with JIRA, Bitbucket and Bamboo are deployed in a private subnet. These applications are linked with each other. Authentication on Bitbucket and Bamboo is configured to use JIRA. To configure email notification Mail Server credentials are needed. AWS has Simple Email Service (SES). New account is created and the applications are configured.
 
 
 
