@@ -16,4 +16,8 @@ There are Cloud, Data Center and Server versions to use these products. I bought
 Here is the architecture diagram:  
 ![Continuous Integration](aws.png)
 
- 
+JIRA Software, Bitbucket and Bamboo servers are not accessible via Internet, since they are located in a private subnet. To reach the infrastructure developers connect via OpenVPN. Database instance is also located in a private subnet. For the servers in the private subnet to reach Internet a NAT instance is deployed in a public subnet.
+
+OpenVPN instance is deployed in a public subnet. I used Bring Your Own License version of the OpenVPN server. It has a limit of two concurrently connected users. We are a team of a Developer and a DevOps engineer, so this version is just enough. An Elastic IP is attached to the OpenVPN server, so its public IP address remains the same across reboots. 
+
+
