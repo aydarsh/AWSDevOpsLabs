@@ -1,4 +1,4 @@
-# An example of a CI/CD stack on AWS featuring JIRA, Bitbucket and Bamboo
+# An example of a Continuous Integration (CI) stack on AWS featuring JIRA, Bitbucket and Bamboo
 
 This is an example of a CI stack build on Amazon Web Services. It's built for a team of one developer and one DevOps engineer.
 
@@ -25,7 +25,3 @@ Firstly, OpenVPN instance is deployed in a public subnet. I used Bring Your Own 
 Next, an RDS PostgreSQL instance is deployed in a private subnet. Here at least two private subnets are required for a subnet group. So one more private subnet is created. This database instance has a separate security group "RDS PostgreSQL SG". It allows inbound connections via 5432/tcp from the default security group.
 
 Then, one by one, three EC2 instances with JIRA, Bitbucket and Bamboo are deployed in a private subnet. These applications are linked with each other. Authentication on Bitbucket and Bamboo is configured to use JIRA. To configure email notification Mail Server credentials are needed. AWS has Simple Email Service (SES). New account is created and the applications are configured.
-
-
-
-
